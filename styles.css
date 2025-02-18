@@ -425,7 +425,7 @@ footer {
   /* Media Query for Tablets (max-width: 1024px) */
 @media screen and (max-width: 1024px) {
     /* Hero Section */
-    .hero {
+    .hero  {
         height: auto; /* Adjust height to fit content */
         padding: 1.5rem;
         margin: 1.5rem; 
@@ -546,10 +546,15 @@ footer {
         padding: 0.5rem 1rem; /* Further reduce button padding */
         font-size: 0.8rem; /* Further reduce button font size */
     }
+    .course-cards {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center; /* Center cards */
+        gap: 1rem; /* Reduce gap between cards */
+    }
 
     /* Course Cards */
     .course-card {
-        width: 90%;  /* Full width */
+        width: 70%;  /* Full width */
     }
 
     .course-card h3 {
