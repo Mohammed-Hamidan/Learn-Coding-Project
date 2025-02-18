@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+        body {
+            
+            font-family: 'Tajawal', sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            direction: rtl;
+        }
+        header {
+            font-family: 'Tajawal', sans-serif;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(17, 17, 17, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+      
+        .container {
+            font-family: 'Tajawal', sans-serif;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            width: 350px;
+            height: 300px;
+            text-align: center;
+            margin-top: 100px;
+            position: relative;
+            transform: translateY(50px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+        }
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 10px;
+        }
+        .link{
+            margin-left: 210px;
+            color: #ffd700;
+            
+        }
+        
+        .btn-container {
+            font-family: 'Tajawal', sans-serif;
+            display: flex;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        button {
+            font-family: 'Tajawal', sans-serif;
+            padding: 10px;
+            width: 90%;
+            background-color: #ffd700;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+     
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">تعلم البرمجة</div>
+       
+        </div>
+    </header>
+    <div class="container">
+        <h2>تسجيل الدخول</h2>
+        <form>
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" required placeholder="name@email.com">
+
+            <label for="password">كلمة المرور:</label>
+            <input type="password" id="password" name="password" required placeholder="**********">
+           
+            <a class="link" href="">نسيت كلمة المرور؟</a>
+            
+            <div class="btn-container">
+                <button type="submit">تسجيل الدخول</button>
+            </div>
+        </form>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - LearnCoding</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+
+        /* General Styles */
+        body {
+    margin: 0;
+    font-family: 'Tajawal', sans-serif;
+    background: #1a1a1a; /* Dark background */
+    color: #f5f5f5; /* Light text */
+    direction: rtl; /* Right-to-left for Arabic */
+    text-align: right;
+}
+
+/* Header */
+header {
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    padding: 1.5rem 0;
+    height: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    
+    
+}
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .signin-btn,
+        .signup-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .signin-btn {
+            background: none;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+        }
+
+        .signup-btn {
+            background: #ffd700;
+            color: #1a1a1a;
+            border: 2px solid #ffd700;
+        }
+
+        .signin-btn:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+
+        .signup-btn:hover {
+            background: #e6b800;
+        }
+
+
+        
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            /* Yellow */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-right: 0;
+            margin-left: 20px;
+            /* Space between links */
+        }
+
+        .nav-links a {
+            position: relative;
+            /* Allows the pseudo-element to position correctly */
+            text-decoration: none;
+            color: #f5f5f5;
+            font-weight: 500;
+            padding: 5px 10px;
+            /* Padding for spacing */
+            transition: color 0.3s ease-in-out;
+        }
+
+        /* The yellow box effect */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            /* Adjust the position */
+            right: 0;
+            /* Start from the right */
+            width: 0%;
+            /* Initially hidden */
+            height: 4px;
+            /* Height of the yellow box */
+            background-color: #ffd700;
+            /* Yellow color */
+            border-radius: 2px;
+            /* Rounded edges */
+            transition: width 0.4s ease-in-out, right 0.4s ease-in-out;
+            /* Smooth effect */
+        }
+
+        /* When hovering, the yellow box expands */
+        .nav-links a:hover::after {
+            width: 100%;
+            /* Expands fully */
+            right: 0;
+            /* Ensures it stays aligned to the right */
+        }
+
+        /* When not hovering, it retracts from left to right */
+        .nav-links a:not(:hover)::after {
+            width: 0%;
+            right: auto;
+            left: 0;
+            /* Retracts towards the left */
+        }
+
+        /* Hover color effect */
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+
+        /* Profile Image */
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ffd700;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 2rem;
+            text-align: center;
+            direction: rtl;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .courses h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+        }
+
+        .course-cards {
+            display: flex;
+            flex-direction: column;
+            /* Stack cards vertically */
+            align-items: center;
+            /* Center cards horizontally */
+            gap: 2rem;
+            width: 90%;
+            /* Space between cards */
+        }
+
+        .course-card {
+            display: flex;
+            flex-direction: row;
+            /* Arrange items in a row */
+            align-items: center;
+            /* Align items in the center */
+            justify-content: flex-start;
+            /* Align content to the left */
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: right;
+            /* Align text to the right */
+            width: 70%;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .course-card:hover {
+            transform: scale(1.05);
+            /* Slight zoom on hover */
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.7);
+            /* Glowing effect */
+        }
+
+        .course-image {
+            width: 180px;
+            /* Increase size if needed */
+            height: auto;
+            margin-left: 1.5rem;
+            /* Add spacing between image and text */
+            border-radius: 10px;
+        }
+
+        .course-content {
+            width: 100%;
+            text-align: right;
+        }
+
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .course-card h3::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .course-card:hover h3::after {
+            width: 100%;
+        }
+
+        .course-card:not(:hover) h3::after {
+            width: 0%;
+            right: auto;
+            left: 0;
+            transition: width 0.5s ease-in-out, right 0.5s ease-in-out;
+        }
+
+        .course-card p {
+            font-size: 1rem;
+            color: #f5f5f5;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-card ul li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #f5f5f5;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .course-card ul li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: #ffd700;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .course-button {
+            padding: 0.5rem 1.5rem;
+            background: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .course-button:hover {
+            background: #e6b800;
+        }
+
+        .course-button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7); /* Glowing effect */
+}
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .course-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .course-card {
+                width: 90%;
+            }
+        }
+        @media screen and (max-width: 768px) {
+    .course-card {
+        flex-direction: column; /* Stack image and text vertically on smaller screens */
+        text-align: center;
+    }
+
+    .course-image {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 2rem;
+            color: #f5f5f5;
+        }
+
+        
+.mobile-menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .mobile-menu-icon span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 4px 0;
+  }
+  
+  /* قائمة الهاتف المخفية */
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    z-index: 100;
+  }
+  .mobile-menu.active {
+    display: block;
+  }
+  .mobile-menu ul {
+    list-style: none;
+  }
+  .mobile-menu li {
+    margin: 10px 0;
+  }
+  .mobile-menu a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .mobile-menu a:hover {
+    color: #ffd700;
+  }
+
+  /* باقي التنسيقات كما هي */
+  .search-bar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 250px;
+    background: rgba(243, 241, 241, 0.2);
+    color: white;
+  }
+
+  /* ---------------------- */
+  /* Media Query for Mobile */
+  /* ---------------------- */
+  @media screen and (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .video-container,
+    .suggested-videos {
+      width: 100%;
+    }
+
+    /* Ensure the left container (video container) maintains the same background as the comment section */
+    .video-container {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* إخفاء قائمة الروابط والأزرار الأصلية */
+    .nav-links,
+    .auth-buttons {
+      display: none;
+    }
+
+    /* عرض أيقونة القائمة للهاتف */
+    .mobile-menu-icon {
+      display: flex;
+    }
+  }
+
+
+  /* Media Query for Tablets (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+    /* Hero Section */
+    .hero {
+        height: auto; /* Adjust height to fit content */
+        padding: 1.5rem;
+        margin: 1.5rem; /* Reduce margin for better spacing */
+    }
+
+    .hero h1 {
+        font-size: 2rem; /* Reduce title size */
+    }
+
+    .hero p {
+        font-size: 1rem; /* Reduce paragraph size */
+    }
+
+    .hero-stats {
+        flex-direction: column; /* Stack stats vertically */
+        gap: 1rem; /* Reduce gap between stats */
+    }
+
+    .stat {
+        margin-bottom: 1rem; /* Add spacing between stats */
+    }
+
+    /* Course Cards */
+    .course-cards {
+        flex-wrap: wrap; /* Allow cards to wrap */
+        justify-content: center; /* Center cards */
+        gap: 1.5rem; /* Reduce gap between cards */
+    }
+
+    .course-card {
+        width: 90%; 
+        margin-bottom: 10px;/* Two cards per row */
+    }
+}
+    </style>
+</head>
+
+
+<body>
+    <header>
+        <nav>
+          <div class="logo">تعلم البرمجة</div>
+          <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="courses.html">الدورات</a></li>
+            <li><a href="discuss.html">الأسئلة</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li class="profile">
+              <a href="profile.html">
+                <img src="profile.jpg" alt="صورة الملف الشخصي" class="profile-img">
+              </a>
+            </li>
+          </ul>
+          <div class="auth-buttons">
+            <a href="login.html" class="signin-btn">تسجيل الدخول</a>
+            <a href="signup.html" class="signup-btn">إنشاء حساب</a>
+          </div>
+          <!-- أيقونة القائمة للهاتف -->
+          <div class="mobile-menu-icon" id="mobile-menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          </div>
+        </nav>
+        <div class="mobile-menu" id="mobile-menu">
+          <ul>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="courses.html">الدورات</a></li>
+            <li><a href="discuss.html">المناقشة</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="profile.html">الملف الشخصي</a></li>
+            <li><a href="signin.html">تسجيل الدخول</a></li>
+            <li><a href="signup.html">إنشاء حساب</a></li>
+          </ul>
+        </div>
+      </header>
+
+    <!-- قسم الدورات -->
+    <section class="courses">
+        <h2>دوراتنا</h2>
+        <div class="course-cards">
+            <div class="course-card">
+                <img src="html-logo.png" alt="HTML Logo" class="course-image">
+                <div class="course-content">
+                    <h3>HTML - الأساسيات وبناء المواقع</h3>
+                    <p>
+                        تعلم أساسيات تطوير الويب من الصفر، حيث ستتعرف على لغة HTML التي تعد اللبنة الأساسية لإنشاء صفحات
+                        الويب.
+                        ستتعلم كيفية استخدام العلامات (Tags) المختلفة لتنظيم المحتوى، وإنشاء صفحات ويب متجاوبة وسهلة
+                        الاستخدام.
+                    </p>
+                    <p>
+                        في هذه الدورة، ستتعرف على أهمية البنية الدلالية (Semantic Structure) في HTML لتحسين تجربة
+                        المستخدم وأداء الموقع
+                        في محركات البحث (SEO). كما ستتعلم كيفية تضمين الصور، الروابط، القوائم، الجداول، والنماذج لجعل
+                        صفحات الويب
+                        أكثر تفاعلية.
+                    </p>
+                    <ul>
+                        <li>فهم بناء HTML وهيكله الأساسي</li>
+                        <li>إنشاء النماذج والجداول والمحتوى المتعدد الوسائط</li>
+                        <li>إضافة الروابط والصور والعناصر التفاعلية إلى صفحات الويب</li>
+                        <li>تصميم صفحات ويب متوافقة مع معايير الوصول وتحسين محركات البحث</li>
+                        <li>دمج HTML مع CSS لتنسيق الصفحات وتحسين المظهر البصري</li>
+                    </ul>
+                    <a href="video.html" class="course-button">المزيد من التفاصيل</a>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="css-logo.webp" alt="CSS Logo" class="course-image">
+                <div class="course-content">
+                    <h3>CSS - تنسيق الصفحات وإنشاء تصاميم احترافية</h3>
+                    <p>أتقن فن تنسيق وتصميم صفحات الويب من الصفر حتى الاحتراف! ستتعلم كيفية استخدام <strong>CSS</strong> لإنشاء تصاميم أنيقة، متجاوبة، واحترافية تناسب جميع الأجهزة.</p>
+                    <p>سنغطي تقنيات متقدمة مثل <strong>Flexbox</strong> و<strong>Grid</strong> لإنشاء تخطيطات مرنة، بالإضافة إلى التحريكات والتأثيرات البصرية لجعل موقعك أكثر جاذبية.</p>
+                    <ul>
+                        <li>فهم <strong>المحددات والخصائص</strong> في CSS لتنسيق النصوص والعناصر.</li>
+                        <li>إنشاء <strong>تصاميم متجاوبة</strong> تدعم الأجهزة المختلفة باستخدام <strong>Flexbox و Grid</strong>.</li>
+                        <li>إضافة <strong>تحريكات وانتقالات</strong> لزيادة التفاعل مع المستخدمين.</li>
+                        <li>استخدام <strong>متغيرات CSS</strong> لتحسين كفاءة الكود وسهولة التعديل.</li>
+                        <li>تطبيق <strong>أحدث معايير التصميم</strong> مثل <strong>Dark Mode</strong> و <strong>Neumorphism</strong>.</li>
+                    </ul>
+                    <a href="CSScourse.html" class="course-button">المزيد من التفاصيل</a>
+                </div>
+            </div>
+            
+            <div class="course-card">
+                <img src="js-logo.webp" alt="JavaScript Logo" class="course-image">
+                <div class="course-content">
+                    <h3>JavaScript - برمجة تفاعلية وتطوير مواقع ديناميكية</h3>
+                    <p>اجعل مواقعك أكثر تفاعلية وحيوية باستخدام <strong>JavaScript</strong>! في هذه الدورة، ستتعلم كيفية برمجة صفحات الويب وإضافة ميزات ديناميكية تعتمد على <strong>التفاعل مع المستخدم</strong>.</p>
+                    <p>ستتعلم كيفية التلاعب بـ <strong>DOM</strong>، واستخدام <strong>الوظائف المتقدمة</strong> في <strong>ES6+</strong>، والعمل مع <strong>واجهات برمجة التطبيقات (APIs)</strong> لإنشاء تطبيقات ويب متكاملة.</p>
+                    <ul>
+                        <li>فهم <strong>أساسيات JavaScript</strong> من المتغيرات، الحلقات، والدوال.</li>
+                        <li>التفاعل مع عناصر الصفحة باستخدام <strong>DOM Manipulation</strong>.</li>
+                        <li>التعامل مع الأحداث (Events) وجعل الموقع يستجيب للمستخدمين.</li>
+                        <li>استخدام <strong>ES6+</strong> (مثل الدوال السهمية، القوالب النصية، والمصفوفات المتقدمة).</li>
+                        <li>التعرف على <strong>Fetch API</strong> و<strong>AJAX</strong> لجلب البيانات من الخوادم وعرضها بشكل ديناميكي.</li>
+                        <li>تطبيق <strong>أفضل الممارسات</strong> في كتابة كود JavaScript قابل للتطوير والصيانة.</li>
+                    </ul>
+                    <a href="javascriptCourse.html" class="course-button">المزيد من التفاصيل</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 تعلم البرمجة. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile menu when clicking on hamburger icon
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+    
+        mobileMenuIcon.addEventListener('click', () => {
+          mobileMenu.classList.toggle('active');
+        });
+      </script>
+    
+</body>
+
+</html>

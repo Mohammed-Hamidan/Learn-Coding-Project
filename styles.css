@@ -1,0 +1,571 @@
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Tajawal', sans-serif;
+    background: #1a1a1a;
+    color: #f5f5f5;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Header */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem 0;
+    height: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 500;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: #f5f5f5;
+    font-weight: 500;
+    padding: 5px 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0%;
+    height: 4px;
+    background-color: #ffd700;
+    border-radius: 2px;
+    transition: width 0.4s ease-in-out, right 0.4s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    right: 0;
+}
+
+.nav-links a:not(:hover)::after {
+    width: 0%;
+    right: auto;
+    left: 0;
+}
+
+.nav-links a:hover {
+    color: #ffd700;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #ffd700;
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.1);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.signin-btn,
+.signup-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.signin-btn {
+    background: none;
+    color: #ffd700;
+    border: 2px solid #ffd700;
+}
+
+.signup-btn {
+    background: #ffd700;
+    color: #1a1a1a;
+    border: 2px solid #ffd700;
+}
+
+.signin-btn:hover {
+    background: #ffd700;
+    color: #1a1a1a;
+}
+
+.signup-btn:hover {
+    background: #e6b800;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    margin: 2rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #f5f5f5;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #f5f5f5;
+}
+
+.cta-button {
+    padding: 0.8rem 2rem;
+    background: #ffd700;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #e6b800;
+}
+
+/* Courses Section */
+.courses {
+    padding: 2rem;
+    text-align: center;
+    direction: rtl;
+}
+
+.courses h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ffd700;
+}
+
+.course-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.course-card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: right;
+    width: 30%;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.course-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.7);
+}
+
+.course-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.course-card h3::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: #ffd700;
+    transition: width 0.5s ease-in-out;
+}
+
+.course-card:hover h3::after {
+    width: 100%;
+}
+
+.course-card:not(:hover) h3::after {
+    width: 0%;
+    right: auto;
+    left: 0;
+    transition: width 0.5s ease-in-out, right 0.5s ease-in-out;
+}
+
+.course-card p {
+    font-size: 1rem;
+    color: #f5f5f5;
+    margin-bottom: 1.5rem;
+}
+
+.course-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.course-card ul li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #f5f5f5;
+    position: relative;
+    padding-right: 20px;
+}
+
+.course-card ul li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #ffd700;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.course-button {
+    padding: 0.5rem 1.5rem;
+    background: #ffd700;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+.course-button:hover {
+    background: #e6b800;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    margin-top: 2rem;
+    color: #f5f5f5;
+}
+
+/* Animations */
+.hero, .course-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .mobile-menu-icon span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 4px 0;
+  }
+  
+  /* قائمة الهاتف المخفية */
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    z-index: 100;
+  }
+  .mobile-menu.active {
+    display: block;
+  }
+  .mobile-menu ul {
+    list-style: none;
+  }
+  .mobile-menu li {
+    margin: 10px 0;
+  }
+  .mobile-menu a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .mobile-menu a:hover {
+    color: #ffd700;
+  }
+
+  /* باقي التنسيقات كما هي */
+  .search-bar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 250px;
+    background: rgba(243, 241, 241, 0.2);
+    color: white;
+  }
+
+  /* ---------------------- */
+  /* Media Query for Mobile */
+  /* ---------------------- */
+  @media screen and (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .video-container,
+    .suggested-videos {
+      width: 100%;
+    }
+
+    /* Ensure the left container (video container) maintains the same background as the comment section */
+    .video-container {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* إخفاء قائمة الروابط والأزرار الأصلية */
+    .nav-links,
+    .auth-buttons {
+      display: none;
+    }
+
+    /* عرض أيقونة القائمة للهاتف */
+    .mobile-menu-icon {
+      display: flex;
+    }
+  }
+
+
+  /* Media Query for Tablets (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+    /* Hero Section */
+    .hero {
+        height: auto; /* Adjust height to fit content */
+        padding: 1.5rem;
+        margin: 1.5rem; 
+        /* Reduce margin for better spacing */
+    }
+
+    .hero h1 {
+        font-size: 2rem; /* Reduce title size */
+    }
+
+    .hero p {
+        font-size: 1rem; /* Reduce paragraph size */
+    }
+
+    .hero-stats {
+        flex-direction: column; /* Stack stats vertically */
+        gap: 1rem; /* Reduce gap between stats */
+    }
+
+    .stat {
+        margin-bottom: 1rem; /* Add spacing between stats */
+    }
+
+    /* Course Cards */
+    .course-cards {
+        flex-wrap: wrap; /* Allow cards to wrap */
+        justify-content: center; /* Center cards */
+        gap: 1.5rem; /* Reduce gap between cards */
+    }
+
+    .course-card {
+        width: 45%; /* Two cards per row */
+    }
+}
+
+/* Media Query for Smartphones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    /* Hero Section */
+    .hero {
+        margin: 1rem; /* Reduce margin */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .hero h1 {
+        font-size: 1.8rem; /* Further reduce title size */
+    }
+
+    .hero p {
+        font-size: 0.9rem; /* Further reduce paragraph size */
+    }
+
+    .hero-stats {
+        gap: 0.5rem; /* Reduce gap between stats */
+    }
+
+    .stat-number {
+        font-size: 1.2rem; /* Reduce stat number size */
+    }
+
+    .stat-label {
+        font-size: 0.8rem; /* Reduce stat label size */
+    }
+
+    .cta-button {
+        padding: 0.6rem 1.5rem; /* Reduce button padding */
+        font-size: 0.9rem; /* Reduce button font size */
+    }
+
+    /* Course Cards */
+    .course-cards {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center; /* Center cards */
+        gap: 1rem; /* Reduce gap between cards */
+    }
+
+    .course-card {
+        width: 90%; /* Full width with some margin */
+    }
+
+    .course-card h3 {
+        font-size: 1.3rem; /* Reduce card title size */
+    }
+
+    .course-card p {
+        font-size: 0.9rem; /* Reduce card paragraph size */
+    }
+
+    .course-card ul li {
+        font-size: 0.8rem; /* Reduce list item size */
+    }
+
+    .course-button {
+        padding: 0.4rem 1.2rem; /* Reduce button padding */
+        font-size: 0.8rem; /* Reduce button font size */
+    }
+}
+
+/* Media Query for Smaller Smartphones (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    /* Hero Section */
+    .hero h1 {
+        font-size: 1.5rem; /* Further reduce title size */
+    }
+
+    .hero p {
+        font-size: 0.8rem; /* Further reduce paragraph size */
+    }
+
+    .stat-number {
+        font-size: 1rem; /* Further reduce stat number size */
+    }
+
+    .stat-label {
+        font-size: 0.7rem; /* Further reduce stat label size */
+    }
+
+    .cta-button {
+        padding: 0.5rem 1rem; /* Further reduce button padding */
+        font-size: 0.8rem; /* Further reduce button font size */
+    }
+
+    /* Course Cards */
+    .course-card {
+        width: 90%;  /* Full width */
+    }
+
+    .course-card h3 {
+        font-size: 1.2rem; /* Further reduce card title size */
+    }
+
+    .course-card p {
+        font-size: 0.8rem; /* Further reduce card paragraph size */
+    }
+
+    .course-card ul li {
+        font-size: 0.7rem; /* Further reduce list item size */
+    }
+
+    .course-button {
+        padding: 0.3rem 1rem; /* Further reduce button padding */
+        font-size: 0.7rem; /* Further reduce button font size */
+    }
+}

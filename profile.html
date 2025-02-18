@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الملف الشخصي - تعلم البرمجة</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      min-height: 100vh;
+      margin: 0;
+    direction: rtl; /* Right-to-left for Arabic */
+    text-align: right;
+      
+    }
+    
+    /* --- الهيدر --- */
+    header {
+      background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 0;
+    height: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    }
+    
+    
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffd700;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-links li {
+      margin-left: 20px;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: #f5f5f5;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #ffd700;
+    }
+    
+    .profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ffd700;
+      transition: transform 0.3s ease;
+    }
+    
+    .profile img:hover {
+      transform: scale(1.1);
+    }
+    
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .signin-btn,
+    .signup-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+    }
+    
+    .signin-btn {
+      background: none;
+      color: #ffd700;
+      border: 2px solid #ffd700;
+    }
+    
+    .signup-btn {
+      background: #ffd700;
+      color: #1a1a1a;
+      border: 2px solid #ffd700;
+    }
+    
+    .signin-btn:hover {
+      background: #ffd700;
+      color: #1a1a1a;
+    }
+    
+    .signup-btn:hover {
+      background: #e6b800;
+    }
+    
+    /* أيقونة القائمة للهاتف والقائمة المنبثقة */
+    .mobile-menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    
+    .mobile-menu-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+    }
+    
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+    }
+    
+    .mobile-menu.active {
+      display: block;
+    }
+    
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .mobile-menu li {
+      margin: 10px 0;
+    }
+    
+    .mobile-menu a {
+      text-decoration: none;
+      color: #f5f5f5;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    
+    .mobile-menu a:hover {
+      color: #ffd700;
+    }
+    
+    /* --- الصفحة الشخصية --- */
+    .profile-page {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 100px auto 0 auto; /* لتجنب تداخل المحتوى مع الهيدر الثابت */
+    }
+    
+    .profile-header {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      /* تحديث الـ box-shadow لتكون مثل صفحة الفيديو */
+      box-shadow: 0 4px 10px rgba(255,215,0,0.5);
+      text-align: center;
+    }
+    
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #ffd700;
+      margin-bottom: 1rem;
+    }
+    
+    .profile-header h1 {
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .profile-header p {
+      font-size: 1rem;
+      color: #f5f5f5;
+    }
+    
+    .profile-stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .profile-stats div {
+      text-align: center;
+    }
+    
+    .profile-stats span {
+      font-size: 1.2rem;
+      color: #ffd700;
+      display: block;
+    }
+    
+    .profile-stats small {
+      font-size: 0.9rem;
+      color: #888;
+    }
+    
+    .streak-calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      justify-items: center;
+      align-items: center;
+    }
+    
+    .streak-day {
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #f5f5f5;
+    }
+    
+    .streak-day.active {
+      background: #ffd700;
+      color: #1a1a1a;
+    }
+    
+    /* --- قسم الدورات --- */
+    .courses-section {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      
+    }
+    
+    .courses-taken,
+    .courses-in-progress {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      width: 48%;
+      /* تحديث الـ box-shadow */
+      box-shadow: 0 4px 10px rgba(255,215,0,0.5);
+    }
+    
+    .courses-taken h2,
+    .courses-in-progress h2 {
+      font-size: 1.5rem;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+    
+    .courses-taken ul,
+    .courses-in-progress ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .courses-taken ul li,
+    .courses-in-progress ul li {
+      font-size: 1rem;
+      color: #f5f5f5;
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-right: 1rem;
+    }
+    
+    .courses-taken ul li::before,
+    .courses-in-progress ul li::before {
+      content: "•";
+      color: #ffd700;
+      position: absolute;
+      right: 0;
+    }
+    
+    /* شريط التقدم */
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    
+    .progress-bar div {
+      height: 100%;
+      background: #ffd700;
+      border-radius: 5px;
+    }
+    
+    /* أنيميشن لقسم الدورات قيد التنفيذ */
+    .courses-in-progress {
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .courses-in-progress:hover {
+      transform: translateY(-10px);
+    }
+    
+    /* --- قسم الشارات --- */
+    .badges-section {
+      
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      /* تحديث الـ box-shadow */
+      box-shadow: 0 4px 10px rgba(255,215,0,0.5);
+    }
+    
+    .badges-section h2 {
+      font-size: 1.5rem;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+    
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+    }
+    
+    .badge {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  .badge img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+  .badge span {
+  font-size: 0.9rem;
+  color: #f5f5f5;
+}
+
+    
+    /* --- قسم النشاط --- */
+    .activity-feed {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      /* تحديث الـ box-shadow */
+      box-shadow: 0 4px 10px rgba(255,215,0,0.5);
+    }
+    
+    .activity-feed h2 {
+      font-size: 1.5rem;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+    
+    .activity-item {
+      font-size: 1rem;
+      color: #f5f5f5;
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-right: 1rem;
+    }
+    
+    .activity-item::before {
+      content: "•";
+      color: #ffd700;
+      position: absolute;
+      right: 0;
+    }
+    
+    /* --- التذييل --- */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      margin-top: 2rem;
+      color: #f5f5f5;
+    }
+    
+    /* --- Media Query for Mobile --- */
+    @media screen and (max-width: 768px) {
+      .nav-links,
+      .auth-buttons {
+          display: none;
+      }
+      .mobile-menu-icon {
+          display: flex;
+      }
+      .profile-page {
+          padding: 1rem;
+      }
+      .courses-taken, .courses-in-progress {
+          width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">تعلم البرمجة</div>
+      <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="discuss.html">المناقشة</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li class="profile">
+          <a href="profile.html">
+            <img src="profile.jpg" alt="صورة الملف الشخصي">
+          </a>
+        </li>
+      </ul>
+      <div class="auth-buttons">
+        <a href="signin.html" class="signin-btn">تسجيل الدخول</a>
+        <a href="login.html" class="signup-btn">إنشاء حساب</a>
+      </div>
+      <div class="mobile-menu-icon" id="mobile-menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="discuss.html">المناقشة</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="profile.html">الملف الشخصي</a></li>
+        <li><a href="signin.html">تسجيل الدخول</a></li>
+        <li><a href="login.html">إنشاء حساب</a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <main>
+    <section class="profile-page">
+      <div class="profile-header">
+        <img src="profile.jpg" alt="صورة الملف الشخصي">
+        <h1>أحمد محمد</h1>
+        <p>مطور ويب | مهتم بالبرمجة</p>
+        <div class="profile-stats">
+          <div>
+            <span>15</span>
+            <small>السلسلة الحالية</small>
+          </div>
+          <div>
+            <span>30</span>
+            <small>أطول سلسلة</small>
+          </div>
+        </div>
+        <div class="streak-calendar">
+          <div class="streak-day active">1</div>
+          <div class="streak-day active">2</div>
+          <div class="streak-day active">3</div>
+          <div class="streak-day">4</div>
+          <div class="streak-day">5</div>
+          <div class="streak-day">6</div>
+          <div class="streak-day">7</div>
+        </div>
+      </div>
+      
+      <!-- قسم الدورات -->
+      <div class="courses-section">
+        <div class="courses-taken">
+          <h2>الدورات المُكتملة</h2>
+          <ul>
+            <li>أساسيات HTML</li>
+            <li>مبادئ CSS</li>
+            <li>مقدمة في JavaScript</li>
+          </ul>
+        </div>
+        <div class="courses-in-progress">
+          <h2>الدورات قيد التنفيذ</h2>
+          <ul>
+            <li>CSS المتقدم <div class="progress-bar"><div style="width: 60%;"></div></div></li>
+            <li>التلاعب بـ DOM في JavaScript <div class="progress-bar"><div style="width: 40%;"></div></div></li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- قسم الشارات -->
+      <div class="badges-section">
+        <h2>الشارات</h2>
+        <div class="badges-grid">
+          <div class="badge">
+            <img src="badge.png" alt="شارة HTML">
+            <span>خبير HTML</span>
+          </div>
+          <div class="badge">
+            <img src="badge.png" alt="شارة CSS">
+            <span>خبير CSS</span>
+          </div>
+          <div class="badge">
+            <img src="badge.png" alt="شارة JavaScript">
+            <span>نينجا JavaScript</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- قسم النشاط -->
+      <div class="activity-feed">
+        <h2>النشاط الأخير</h2>
+        <div class="activity-item">أتممت أساسيات HTML</div>
+        <div class="activity-item">بدأت CSS المتقدم</div>
+        <div class="activity-item">حصلت على شارة خبير CSS</div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2023 تعلم البرمجة. كل الحقوق محفوظة.</p>
+  </footer>
+  
+  <script>
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuIcon.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تعلم البرمجة - مشاهدة الفيديو</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      text-align: right;
+    }
+
+    /* تعديل الشريط الرئيسي ليكون فليكس */
+    header {
+      display: flex;
+      justify-content: center; /* نركز المحتوى أفقياً */
+      align-items: center;     /* نركز المحتوى عمودياً */
+      background: rgba(0, 0, 0, 0.7); /* خلفية سوداء شفافة */
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;      /* زيادة الهامش الداخلي */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0;
+    }
+
+    .nav-links li {
+      margin-right: 0;
+      margin-left: 20px;
+    }
+
+    .nav-links a {
+      position: relative;
+      text-decoration: none;
+      color: #f5f5f5;
+      font-weight: 500;
+      padding: 5px 10px;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      right: 0;
+      width: 0%;
+      height: 4px;
+      background-color: #ffd700;
+      border-radius: 2px;
+      transition: width 0.4s ease-in-out, right 0.4s ease-in-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+      right: 0;
+    }
+
+    .nav-links a:not(:hover)::after {
+      width: 0%;
+      right: auto;
+      left: 0;
+    }
+
+    .nav-links a:hover {
+      color: #ffd700;
+    }
+
+    .profile-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ffd700;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.1);
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .signin-btn,
+    .signup-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .signin-btn {
+      background: none;
+      color: #ffd700;
+      border: 2px solid #ffd700;
+    }
+
+    .signup-btn {
+      background: #ffd700;
+      color: #1a1a1a;
+      border: 2px solid #ffd700;
+    }
+
+    .signin-btn:hover {
+      background: #ffd700;
+      color: #1a1a1a;
+    }
+
+    .signup-btn:hover {
+      background: #e6b800;
+    }
+
+    /* أيقونة القائمة للهاتف */
+    .mobile-menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .mobile-menu-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+    }
+    
+    /* قائمة الهاتف المخفية */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+    }
+    .mobile-menu.active {
+      display: block;
+    }
+    .mobile-menu ul {
+      list-style: none;
+    }
+    .mobile-menu li {
+      margin: 10px 0;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #f5f5f5;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .mobile-menu a:hover {
+      color: #ffd700;
+    }
+
+    /* باقي التنسيقات كما هي */
+    .search-bar {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar input {
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      width: 250px;
+      background: rgba(243, 241, 241, 0.2);
+      color: white;
+    }
+
+    .main-content {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 100px;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    /* Left Container (Video Container) */
+    .video-container {
+      flex: 2;
+      background: rgba(0, 0, 0, 0.7);  /* نفس لون الخلفية المستخدم في قسم التعليقات */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .video-title {
+      font-size: 28px;
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+
+    .video-player iframe {
+      width: 100%;
+      height: 400px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-description {
+      margin-top: 20px;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-description h3 {
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .video-description p {
+      font-size: 14px;
+      color: #f5f5f5;
+    }
+
+    .video-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .action-btn {
+      font-family: 'Tajawal', sans-serif;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffd700;
+      color: black;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .action-btn:hover {
+      background-color: #f1b224;
+    }
+
+    /* Comment Section */
+    .comment-section {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+      margin-top: 20px;
+    }
+
+    .comment-section h3 {
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+
+    .comment-section .comments {
+      margin-bottom: 20px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .comment-section .comments .comment {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .comment-section .comments .comment img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #1a1a1a;
+    }
+
+    .comment-section .comments .comment p {
+      margin: 0;
+      font-size: 14px;
+      color: #f5f5f5;
+    }
+
+    .comment-section textarea {
+      width: calc(100% - 2rem);
+      height: 100px;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #ffd700;
+      border-radius: 10px;
+      color: #f5f5f5;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      resize: vertical;
+    }
+    
+    .comment-section button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffd700;
+      color: black;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .comment-section button:hover {
+      background-color: #f1b224;
+    }
+
+    /* Suggested Videos Section (Right Side) */
+    .suggested-videos {
+      flex: 1;
+      /* تغيير لون الخلفية لتطابق لون الكونتينر على اليمين */
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+
+    .suggested-videos h3 {
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+
+    .suggested-video {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: background-color 0.3s;
+    }
+
+    .suggested-video:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .suggested-video iframe {
+      width: 150px;
+      height: 100px;
+      border-radius: 8px;
+    }
+
+    .suggested-video h4 {
+      font-size: 16px;
+      color: #ffd700;
+    }
+
+    .suggested-video p {
+      font-size: 14px;
+      color: #f5f5f5;
+    }
+
+    footer {
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+      text-align: center;
+      padding: 1rem;
+      background: rgba(17, 17, 17, 0.7);
+      backdrop-filter: blur(10px);
+      margin-top: 2rem;
+      color: #f5f5f5;
+      
+      right: 0;
+      bottom: 0;
+      width: 100%;
+    }
+    
+    /* ---------------------- */
+    /* Media Query for Mobile */
+    /* ---------------------- */
+    @media screen and (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        padding: 10px;
+      }
+      .video-container, 
+      .suggested-videos {
+        width: 100%;
+      }
+      /* Ensure the left container (video container) maintains the same background as the comment section */
+      .video-container {
+        background: rgba(0, 0, 0, 0.7);
+      }
+      /* إخفاء قائمة الروابط والأزرار الأصلية */
+      .nav-links,
+      .auth-buttons {
+        display: none;
+      }
+      /* عرض أيقونة القائمة للهاتف */
+      .mobile-menu-icon {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">تعلم البرمجة</div>
+      <ul class="nav-links">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        
+        <li><a href="discuss.html">المناقشة</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li class="profile">
+          <a href="profile.html">
+            <img src="profile.jpg" alt="صورة الملف الشخصي" class="profile-img">
+          </a>
+        </li>
+      </ul>
+      <div class="auth-buttons">
+        <a href="signin.html" class="signin-btn">تسجيل الدخول</a>
+        <a href="signup.html" class="signup-btn">إنشاء حساب</a>
+      </div>
+      <!-- أيقونة القائمة للهاتف -->
+      <div class="mobile-menu-icon" id="mobile-menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <!-- قائمة الهاتف -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="courses.html">الدورات</a></li>
+        <li><a href="discuss.html">المناقشة</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="profile.html">الملف الشخصي</a></li>
+        <li><a href="signin.html">تسجيل الدخول</a></li>
+        <li><a href="signup.html">إنشاء حساب</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="main-content">
+      <!-- Video Container (Left Side) -->
+      <div class="video-container">
+        <h2 class="video-title">الفيديو الحالي: الدرس الاول في Js</h2>
+        <div class="video-player">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GM6dQBmc-Xg?si=s1aMjI_x3wJh75Am" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-description">
+          <h3>وصف الفيديو:</h3>
+          <p>
+            سنتعرف في هذا الدرس على كيفية استخدام JavaScript للتفاعل مع صفحات الويب وتعديل مظهر العناصر ديناميكيًا. سنستعرض كيفية تغيير النصوص، الألوان، والمحاذاة برمجيًا، بالإضافة إلى كيفية التعامل مع الأحداث لجعل الصفحة أكثر تفاعلية. كما سنتعلم كيفية ربط ملف JavaScript خارجي بـ HTML لتحسين تنظيم الكود
+          </p>
+        </div>
+
+        <div class="video-actions">
+          <button class="action-btn">إعجاب</button>
+          <button class="action-btn">تعليق</button>
+          <button class="action-btn">مشاركة</button>
+        </div>
+
+        <div class="comment-section">
+          <h3>التعليقات:</h3>
+          <div class="comments">
+            <div class="comment">
+              <img src="profile9.jpg" alt="صورة الملف الشخصي">
+              <div>
+                <p>محمد إبراهيم</p>
+                <p>هذا الفيديو مفيد للغاية ولقد استفدت منه كثيراً شكراً لكم.</p>
+              </div>
+            </div>
+          </div>
+          <textarea placeholder="أضف تعليقًا..."></textarea>
+          <button>إرسال</button>
+        </div>
+      </div>
+
+      <!-- Suggested Videos Section (Right Side) -->
+      <div class="suggested-videos">
+        <h3>فيديوهات مقترحة:</h3>
+        <div class="suggested-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/MAauLwSHO6Y?si=nthY_5p4pzh1iRi_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div>
+            <h4>الدرس التاني </h4>
+            <p> التعامل مع عناصر HTML باستخدام JavaScript، مثل تعديل المحتوى، تغيير الأنماط، وإضافة عناصر .</p>
+          </div>
+        </div>
+        <div class="suggested-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5wAtDN_CLgI?si=YDZhrB5ILA9Pcbkg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div>
+            <h4>الدرس الثالث</h4>
+            <p> التعامل مع الأحداث في JavaScript،  لجعل صفحات الويب أكثر تفاعلية واستجابة للمستخدم.</p>
+          </div>
+        </div>
+        <div class="suggested-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ig_1bvufUPo?si=g_WZb8sHLKcVsf1F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div>
+            <h4>الدرس الرابع</h4>
+            <p> كيفية التعامل مع نماذج HTML، التحقق من المدخلات، وإرسال البيانات باستخدام JavaScript  </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 تعلم البرمجة. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    // Toggle mobile menu when clicking on hamburger icon
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuIcon.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
