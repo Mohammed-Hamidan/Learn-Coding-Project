@@ -10,25 +10,26 @@
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
 
     body {
-    margin: 0;
-    font-family: 'Tajawal', sans-serif;
-    background: #1a1a1a; /* Dark background */
-    color: #f5f5f5; /* Light text */
-    direction: rtl; /* Right-to-left for Arabic */
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      font-family: 'Tajawal', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      text-align: right;
 }
 
 /* Header */
 header {
-    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-    backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
     padding: 1.5rem 0;
     height: 80px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
+    
     
     
 }
@@ -314,7 +315,7 @@ header {
       flex: 1;
       /* تغيير لون الخلفية لتطابق لون الكونتينر على اليمين */
       background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
+      
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
@@ -365,13 +366,13 @@ header {
       text-align: center;
       padding: 1rem;
       background: rgba(17, 17, 17, 0.7);
-      backdrop-filter: blur(10px);
+      
       margin-top: 2rem;
       color: #f5f5f5;
 
       right: 0;
       bottom: 0;
-      width: 100%;
+      width:100%;
     }
     .mobile-menu-icon {
       display: none;
@@ -422,21 +423,35 @@ header {
       justify-content: center;
     }
 
-    .search-bar input {
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      width: 250px;
-      background: rgba(243, 241, 241, 0.2);
-      color: white;
-    }
 
     /* ---------------------- */
     /* Media Query for Mobile */
     /* ---------------------- */
     @media screen and (max-width: 768px) {
+      header {
+        padding: 1rem 0; /* Reduce padding */
+    }
+
+    .logo {
+        font-size: 1.2rem; /* Reduce logo size */
+    }
+
+    .mobile-menu-icon span {
+        width: 20px; /* Reduce hamburger icon size */
+        height: 2px; /* Reduce hamburger icon size */
+    }
+
+    .mobile-menu {
+        top: 50px; /* Adjust mobile menu position */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .mobile-menu a {
+        font-size: 1rem; /* Reduce font size */
+    }
       .main-content {
+        width: 80%;
+        display: flex;
         flex-direction: column;
         padding: 10px;
       }
@@ -461,7 +476,92 @@ header {
       .mobile-menu-icon {
         display: flex;
       }
+      footer {
+        padding: 0.5rem; /* Reduce padding */
     }
+
+    footer p {
+        font-size: 0.8rem; /* Reduce footer text size */
+    }
+    }
+    @media screen and (max-width: 480px) {
+    /* Header */
+    header {
+        padding: 1rem 0; /* Reduce padding */
+    }
+
+    .logo {
+        font-size: 1.2rem; /* Reduce logo size */
+    }
+
+    .mobile-menu-icon span {
+        width: 20px; /* Reduce hamburger icon size */
+        height: 2px; /* Reduce hamburger icon size */
+    }
+
+    .mobile-menu {
+        top: 50px; /* Adjust mobile menu position */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .mobile-menu a {
+        font-size: 1rem; /* Reduce font size */
+    }
+
+    /* Courses Section */
+    .courses {
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .courses h2 {
+        font-size: 1.5rem; /* Reduce heading size */
+    }
+
+    .course-cards {
+        gap: 1rem; /* Reduce gap between cards */
+    }
+
+    .course-card {
+        display: flex;
+        width: 90%; /* Full width for better readability */
+        flex-direction: column; /* Stack image and text vertically */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .course-image {
+        width: 50%; /* Full width for images */
+        margin-left: 0; /* Remove left margin */
+        margin-bottom: 1rem; /* Add bottom margin */
+    }
+
+    
+
+    .course-card h3 {
+        font-size: 1.2rem; /* Reduce title size */
+    }
+
+    .course-card p {
+        font-size: 0.8rem; /* Reduce paragraph size */
+    }
+
+    .course-card ul li {
+        font-size: 0.7rem; /* Reduce list item size */
+    }
+
+    .course-button {
+        padding: 0.4rem 1rem; /* Reduce button padding */
+        font-size: 0.8rem; /* Reduce button font size */
+    }
+
+    /* Footer */
+    footer {
+        padding: 0.5rem; /* Reduce padding */
+    }
+
+    footer p {
+        font-size: 0.8rem; /* Reduce footer text size */
+    }
+}
   </style>
 </head>
 
@@ -494,12 +594,12 @@ header {
     </nav>
     <div class="mobile-menu" id="mobile-menu">
       <ul>
-        <li><a href="#">الرئيسية</a></li>
+        <li><a href="index.html">الرئيسية</a></li>
         <li><a href="courses.html">الدورات</a></li>
         <li><a href="discuss.html">المناقشة</a></li>
         <li><a href="about.html">من نحن</a></li>
         <li><a href="profile.html">الملف الشخصي</a></li>
-        <li><a href="login.html">تسجيل الدخول</a></li>
+        <li><a href="signin.html">تسجيل الدخول</a></li>
         <li><a href="signup.html">إنشاء حساب</a></li>
       </ul>
     </div>

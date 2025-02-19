@@ -7,12 +7,6 @@
   
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
     body {
       font-family: 'Tajawal', sans-serif;
@@ -25,97 +19,19 @@
       min-height: 100vh;
       margin: 0;
       text-align: right;
-    }
+}
 
-    /* تعديل الشريط الرئيسي ليكون فليكس */
-    header {
-      display: flex;
-      justify-content: center; /* نركز المحتوى أفقياً */
-      align-items: center;     /* نركز المحتوى عمودياً */
-      background: rgba(0, 0, 0, 0.7); /* خلفية سوداء شفافة */
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;      /* زيادة الهامش الداخلي */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      position: fixed;
-      top: 0;
-      z-index: 1000;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #ffd700;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0;
-    }
-
-    .nav-links li {
-      margin-right: 0;
-      margin-left: 20px;
-    }
-
-    .nav-links a {
-      position: relative;
-      text-decoration: none;
-      color: #f5f5f5;
-      font-weight: 500;
-      padding: 5px 10px;
-      transition: color 0.3s ease-in-out;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      right: 0;
-      width: 0%;
-      height: 4px;
-      background-color: #ffd700;
-      border-radius: 2px;
-      transition: width 0.4s ease-in-out, right 0.4s ease-in-out;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-      right: 0;
-    }
-
-    .nav-links a:not(:hover)::after {
-      width: 0%;
-      right: auto;
-      left: 0;
-    }
-
-    .nav-links a:hover {
-      color: #ffd700;
-    }
-
-    .profile-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid #ffd700;
-      transition: transform 0.3s ease;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.1);
-    }
+/* Header */
+header {
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    padding: 1.5rem 0;
+    height: 80px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    
+    
+    
+}
 
     .auth-buttons {
       display: flex;
@@ -152,64 +68,101 @@
       background: #e6b800;
     }
 
-    /* أيقونة القائمة للهاتف */
-    .mobile-menu-icon {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
+
+    nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffd700;
+      /* Yellow */
     }
-    .mobile-menu-icon span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      margin: 4px 0;
-    }
-    
-    /* قائمة الهاتف المخفية */
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      padding: 20px;
-    }
-    .mobile-menu.active {
-      display: block;
-    }
-    .mobile-menu ul {
+
+    .nav-links {
       list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0;
     }
-    .mobile-menu li {
-      margin: 10px 0;
+
+    .nav-links li {
+      margin-right: 0;
+      margin-left: 20px;
+      /* Space between links */
     }
-    .mobile-menu a {
+
+    .nav-links a {
+      position: relative;
+      /* Allows the pseudo-element to position correctly */
       text-decoration: none;
       color: #f5f5f5;
-      font-size: 1.2rem;
       font-weight: 500;
+      padding: 5px 10px;
+      /* Padding for spacing */
+      transition: color 0.3s ease-in-out;
     }
-    .mobile-menu a:hover {
+
+    /* The yellow box effect */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      /* Adjust the position */
+      right: 0;
+      /* Start from the right */
+      width: 0%;
+      /* Initially hidden */
+      height: 4px;
+      /* Height of the yellow box */
+      background-color: #ffd700;
+      /* Yellow color */
+      border-radius: 2px;
+      /* Rounded edges */
+      transition: width 0.4s ease-in-out, right 0.4s ease-in-out;
+      /* Smooth effect */
+    }
+
+    /* When hovering, the yellow box expands */
+    .nav-links a:hover::after {
+      width: 100%;
+      /* Expands fully */
+      right: 0;
+      /* Ensures it stays aligned to the right */
+    }
+
+    /* When not hovering, it retracts from left to right */
+    .nav-links a:not(:hover)::after {
+      width: 0%;
+      right: auto;
+      left: 0;
+      /* Retracts towards the left */
+    }
+
+    /* Hover color effect */
+    .nav-links a:hover {
       color: #ffd700;
     }
 
-    /* باقي التنسيقات كما هي */
-    .search-bar {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
+
+    /* Profile Image */
+    .profile-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ffd700;
+      transition: transform 0.3s ease;
     }
 
-    .search-bar input {
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      width: 250px;
-      background: rgba(243, 241, 241, 0.2);
-      color: white;
+    .profile-img:hover {
+      transform: scale(1.1);
     }
 
     .main-content {
@@ -224,7 +177,8 @@
     /* Left Container (Video Container) */
     .video-container {
       flex: 2;
-      background: rgba(0, 0, 0, 0.7);  /* نفس لون الخلفية المستخدم في قسم التعليقات */
+      background: rgba(0, 0, 0, 0.7);
+      /* نفس لون الخلفية المستخدم في قسم التعليقات */
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
@@ -339,7 +293,7 @@
       margin-bottom: 1rem;
       resize: vertical;
     }
-    
+
     .comment-section button {
       padding: 10px 20px;
       border: none;
@@ -360,17 +314,18 @@
       flex: 1;
       /* تغيير لون الخلفية لتطابق لون الكونتينر على اليمين */
       background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
+      
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
       overflow-y: auto;
-      max-height: 80vh;
+      max-height: 90vh;
     }
 
     .suggested-videos h3 {
       color: #ffd700;
       margin-bottom: 15px;
+      
     }
 
     .suggested-video {
@@ -382,6 +337,7 @@
       border-radius: 8px;
       background-color: rgba(255, 255, 255, 0.05);
       transition: background-color 0.3s;
+      
     }
 
     .suggested-video:hover {
@@ -409,41 +365,202 @@
       text-align: center;
       padding: 1rem;
       background: rgba(17, 17, 17, 0.7);
-      backdrop-filter: blur(10px);
+      
       margin-top: 2rem;
       color: #f5f5f5;
-      
+
       right: 0;
       bottom: 0;
-      width: 100%;
+      width:100%;
+    }
+    .mobile-menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .mobile-menu-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
     }
     
+    /* قائمة الهاتف المخفية */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+    }
+    .mobile-menu.active {
+      display: block;
+    }
+    .mobile-menu ul {
+      list-style: none;
+    }
+    .mobile-menu li {
+      margin: 10px 0;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #f5f5f5;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .mobile-menu a:hover {
+      color: #ffd700;
+    }
+
+    /* باقي التنسيقات كما هي */
+    .search-bar {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+
     /* ---------------------- */
     /* Media Query for Mobile */
     /* ---------------------- */
     @media screen and (max-width: 768px) {
+      header {
+        padding: 1rem 0; /* Reduce padding */
+    }
+
+    .logo {
+        font-size: 1.2rem; /* Reduce logo size */
+    }
+
+    .mobile-menu-icon span {
+        width: 20px; /* Reduce hamburger icon size */
+        height: 2px; /* Reduce hamburger icon size */
+    }
+
+    .mobile-menu {
+        top: 50px; /* Adjust mobile menu position */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .mobile-menu a {
+        font-size: 1rem; /* Reduce font size */
+    }
       .main-content {
+        width: 80%;
+        display: flex;
         flex-direction: column;
         padding: 10px;
       }
-      .video-container, 
+
+      .video-container,
       .suggested-videos {
         width: 100%;
       }
+
       /* Ensure the left container (video container) maintains the same background as the comment section */
       .video-container {
         background: rgba(0, 0, 0, 0.7);
       }
+
       /* إخفاء قائمة الروابط والأزرار الأصلية */
       .nav-links,
       .auth-buttons {
         display: none;
       }
+
       /* عرض أيقونة القائمة للهاتف */
       .mobile-menu-icon {
         display: flex;
       }
+      footer {
+        padding: 0.5rem; /* Reduce padding */
     }
+
+    footer p {
+        font-size: 0.8rem; /* Reduce footer text size */
+    }
+    }
+    @media screen and (max-width: 480px) {
+    /* Header */
+    header {
+        padding: 1rem 0; /* Reduce padding */
+    }
+
+    .logo {
+        font-size: 1.2rem; /* Reduce logo size */
+    }
+
+    .mobile-menu-icon span {
+        width: 20px; /* Reduce hamburger icon size */
+        height: 2px; /* Reduce hamburger icon size */
+    }
+
+    .mobile-menu {
+        top: 50px; /* Adjust mobile menu position */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .mobile-menu a {
+        font-size: 1rem; /* Reduce font size */
+    }
+
+    /* Courses Section */
+    .courses {
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .courses h2 {
+        font-size: 1.5rem; /* Reduce heading size */
+    }
+
+    .course-cards {
+        gap: 1rem; /* Reduce gap between cards */
+    }
+
+    .course-card {
+        display: flex;
+        width: 90%; /* Full width for better readability */
+        flex-direction: column; /* Stack image and text vertically */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .course-image {
+        width: 50%; /* Full width for images */
+        margin-left: 0; /* Remove left margin */
+        margin-bottom: 1rem; /* Add bottom margin */
+    }
+
+    
+
+    .course-card h3 {
+        font-size: 1.2rem; /* Reduce title size */
+    }
+
+    .course-card p {
+        font-size: 0.8rem; /* Reduce paragraph size */
+    }
+
+    .course-card ul li {
+        font-size: 0.7rem; /* Reduce list item size */
+    }
+
+    .course-button {
+        padding: 0.4rem 1rem; /* Reduce button padding */
+        font-size: 0.8rem; /* Reduce button font size */
+    }
+
+    /* Footer */
+    footer {
+        padding: 0.5rem; /* Reduce padding */
+    }
+
+    footer p {
+        font-size: 0.8rem; /* Reduce footer text size */
+    }
+}
   </style>
 </head>
 <body>
