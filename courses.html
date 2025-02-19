@@ -317,11 +317,15 @@ nav {
         @media screen and (max-width: 768px) {
             .course-cards {
                 flex-direction: column;
-                align-items: center;
+                display: flex;
+                justify-content: center;
+                
             }
 
             .course-card {
-                width: 90%;
+                width: 70%;
+                
+
             }
         }
         @media screen and (max-width: 768px) {
@@ -466,14 +470,94 @@ nav {
 
     /* Course Cards */
     .course-cards {
+        display: flex;
         flex-wrap: wrap; /* Allow cards to wrap */
         justify-content: center; /* Center cards */
         gap: 1.5rem; /* Reduce gap between cards */
     }
 
     .course-card {
-        width: 90%; 
+        width: 70%; 
         margin-bottom: 10px;/* Two cards per row */
+    }
+}
+/* Media Query for Smaller Smartphones (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    /* Header */
+    header {
+        padding: 1rem 0; /* Reduce padding */
+    }
+
+    .logo {
+        font-size: 1.2rem; /* Reduce logo size */
+    }
+
+    .mobile-menu-icon span {
+        width: 20px; /* Reduce hamburger icon size */
+        height: 2px; /* Reduce hamburger icon size */
+    }
+
+    .mobile-menu {
+        top: 50px; /* Adjust mobile menu position */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .mobile-menu a {
+        font-size: 1rem; /* Reduce font size */
+    }
+
+    /* Courses Section */
+    .courses {
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .courses h2 {
+        font-size: 1.5rem; /* Reduce heading size */
+    }
+
+    .course-cards {
+        gap: 1rem; /* Reduce gap between cards */
+    }
+
+    .course-card {
+        display: flex;
+        width: 90%; /* Full width for better readability */
+        flex-direction: column; /* Stack image and text vertically */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .course-image {
+        width: 50%; /* Full width for images */
+        margin-left: 0; /* Remove left margin */
+        margin-bottom: 1rem; /* Add bottom margin */
+    }
+
+    
+
+    .course-card h3 {
+        font-size: 1.2rem; /* Reduce title size */
+    }
+
+    .course-card p {
+        font-size: 0.8rem; /* Reduce paragraph size */
+    }
+
+    .course-card ul li {
+        font-size: 0.7rem; /* Reduce list item size */
+    }
+
+    .course-button {
+        padding: 0.4rem 1rem; /* Reduce button padding */
+        font-size: 0.8rem; /* Reduce button font size */
+    }
+
+    /* Footer */
+    footer {
+        padding: 0.5rem; /* Reduce padding */
+    }
+
+    footer p {
+        font-size: 0.8rem; /* Reduce footer text size */
     }
 }
     </style>
